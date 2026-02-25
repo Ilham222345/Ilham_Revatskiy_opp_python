@@ -23,16 +23,23 @@ class SecureData:
     def __init__(self, secret):
         self.__secret = secret
 
-    @classmethod
-    def set_secret(cls, secret):
-        cls.__secret = secret
-
     def __getattribute__(self, name):
-        if self.name == self.__secret:
-            raise ValueError
-print("Что такое переопределять")
+        return object.__getattribute__(self, name)
+
+    def get_secret(self):
+        return self.__secret
+
+    def __setattr__(self, name, value):
+        if name == "token":
+            raise ValueError ("Такое имя нельзя использовать")
+        object.__setattr__(self, name, value)
 
 data = SecureData("пароль123")
+# print(data.__secret)
+print(data.get_secret())
+# data.token = "abc123"
+data.other = "ok"
+
 
 """
 3. Создай класс SafeDict, в котором:
@@ -153,15 +160,31 @@ print(form.username)
 проверку исключения при вводе короткого номера;
 проверку вывода замаскированного номера.
 """
-
+from datetime import datetime
 class Card:
     def __init__(self, number: str):
-        self.__number = number
+        self.number = number
 
     @property
     def number(self):
-        return self.__number.
-print("Незнаю что такое маска и как ее делать")
+        return "*" * 12 + self.__number[-4:]
+    @number.setter
+    def number(self, value):
+        if len(value) != 16:
+            raise ValueError("Номер должен ссотоять из 16 цифр")
+        self.__number = value
+    @number.deleter
+    def number(self):
+        print("[LOG]"
+              f"Удален номер в {datetime.now()}")
+        del self.__number
+
+test1 = Card("1234456789042345")
+assert len(test1.number) == 16, "Неверный номер карты"
+assert test1.number == "************2345"
+print(test1.number)
+test2 = Card("2")
+print(test2.number)
 
 """
 8. Создай класс UserData для API регистрации пользователя:
@@ -212,7 +235,6 @@ class UserData:
         return {"email": self.email, "age": self.age, "is_active": self.is_active}
 
 test1 = UserData("redlsl.com", 15, True)
-assert "@" not in test1.email, "Почта без - @"
-assert test1.age == 15, "Неверный возраст"
+assert "@" in test1.email, "Почта без - @"
+assert test1.age > 18, "Неверный возраст"
 assert test1.json["is_active"] is True
-print("В уроке было все тоже самое, но здесь ничего не работает, почему?")
