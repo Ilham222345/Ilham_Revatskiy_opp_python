@@ -8,21 +8,21 @@
 """
 import time
 
-# class Cat:
-#     def speak(self):
-#         print("Класс кошка")
-#
-# class Dog:
-#     def speak(self):
-#         print("Класс собака")
-#
-# class Duck:
-#     def speak(self):
-#         print("Класс утка")
-#
-# animals = [Cat(), Dog(), Duck()]
-# for animal in animals:
-#     animal.speak()
+class Cat:
+    def speak(self):
+        print("Класс кошка")
+
+class Dog:
+    def speak(self):
+        print("Класс собака")
+
+class Duck:
+    def speak(self):
+        print("Класс утка")
+
+animals = [Cat(), Dog(), Duck()]
+for animal in animals:
+    animal.speak()
 
 """
 ======================================
@@ -34,28 +34,28 @@ import time
 ======================================
 """
 
-# class Shape:
-#     def ger_pr(self):
-#         print('Shape')
-#
-# class Square(Shape):
-#     def ger_pr(self):
-#         print('Square')
-#         super().ger_pr()
-#
-# class Rectangle(Shape):
-#     def ger_pr(self):
-#         print('Rectangle')
-#         super().ger_pr()
-#
-# class Triangle(Shape):
-#     def ger_pr(self):
-#         print('Triangle')
-#         super().ger_pr()
-#
-# shapes = [Square(), Rectangle(), Triangle()]
-# for shape in shapes:
-#     shape.ger_pr()
+class Shape:
+    def ger_pr(self):
+        print('Shape')
+
+class Square(Shape):
+    def ger_pr(self):
+        print('Square')
+        super().ger_pr()
+
+class Rectangle(Shape):
+    def ger_pr(self):
+        print('Rectangle')
+        super().ger_pr()
+
+class Triangle(Shape):
+    def ger_pr(self):
+        print('Triangle')
+        super().ger_pr()
+
+shapes = [Square(), Rectangle(), Triangle()]
+for shape in shapes:
+    shape.ger_pr()
 
 """
 ======================================
@@ -65,17 +65,17 @@ import time
 ======================================
 """
 
-# from abc import ABC, abstractmethod
-# class Shape(ABC):
-#     @abstractmethod
-#     def ger_pr(self):
-#         print('Shape')
-#
-# class Square(Shape):
-#     def __init__(self):
-#         print('Square')
-#
-# shapes = Square()
+from abc import ABC, abstractmethod
+class Shape(ABC):
+    @abstractmethod
+    def ger_pr(self):
+        print('Shape')
+
+class Square(Shape):
+    def __init__(self):
+        print('Square')
+
+shapes = Square()
 
 """
 ======================================
@@ -85,21 +85,21 @@ import time
 ======================================
 """
 
-# class A:
-#     def __init__(self):
-#         print("init A")
-#         super().__init__()
-# class B:
-#     def __init__(self):
-#         print("init B")
-#         super().__init__()
-# class C:
-#     def __init__(self):
-#         print("init C")
-# class D(A, B, C):
-#     def __init__(self):
-#         print("init D")
-# print(D.__mro__)
+class A:
+    def __init__(self):
+        print("init A")
+        super().__init__()
+class B:
+    def __init__(self):
+        print("init B")
+        super().__init__()
+class C:
+    def __init__(self):
+        print("init C")
+class D(A, B, C):
+    def __init__(self):
+        print("init D")
+print(D.__mro__)
 
 """
 5. Создай MixinLog (как в уроке).
@@ -108,36 +108,36 @@ import time
 ======================================
 """
 
-# class Goods:
-#     def __init__(self, name, data, deposit):
-#         super().__init__()
-#         self.name = name
-#         self.data = data
-#         self.deposit = deposit
-#
-#     def print_info(self):
-#         if self.deposit:
-#             print(f"Ваше имя: {self.name}\n"
-#                   f"Дата бронирования: {self.data}\n"
-#                   f"Депозит внесен.")
-#
-# class MixinLog:
-#     def __init__(self):
-#         print("Бронирование гостинницы...")
-#         time.sleep(4)
-#         print("Бронь прошла успешно.")
-#     def print_info(self):
-#         print("Реализуюю пробный сервис")
-#
-# # class Notebook(Goods, MixinLog):
-# #     pass
-#
-# class Notebook(MixinLog, Goods):
+class Goods:
+    def __init__(self, name, data, deposit):
+        super().__init__()
+        self.name = name
+        self.data = data
+        self.deposit = deposit
+
+    def print_info(self):
+        if self.deposit:
+            print(f"Ваше имя: {self.name}\n"
+                  f"Дата бронирования: {self.data}\n"
+                  f"Депозит внесен.")
+
+class MixinLog:
+    def __init__(self):
+        print("Бронирование гостинницы...")
+        time.sleep(4)
+        print("Бронь прошла успешно.")
+    def print_info(self):
+        print("Реализуюю пробный сервис")
+
+# class Notebook(Goods, MixinLog):
 #     pass
-#
-# n = Notebook("Bob", "23.02", "True")
-# n.print_info()
-# # Логика изменилась, ничего теперь не работает...
+
+class Notebook(MixinLog, Goods):
+    pass
+
+n = Notebook("Bob", "23.02", "True")
+n.print_info()
+# Логика изменилась, ничего теперь не работает...
 
 """
 ======================================
@@ -147,11 +147,11 @@ import time
 ======================================
 """
 
-# firt_number = float(input("Введите первое число: "))
-# second_number = float(input("Введите второе число: "))
-# if second_number == 0:
-#     raise ZeroDivisionError ("На ноль делить нельзя!")
-# else: print(f"Деление первого числа, на второе: {firt_number // second_number}")
+firt_number = float(input("Введите первое число: "))
+second_number = float(input("Введите второе число: "))
+if second_number == 0:
+    raise ZeroDivisionError ("На ноль делить нельзя!")
+else: print(f"Деление первого числа, на второе: {firt_number // second_number}")
 
 """
 ======================================
@@ -161,16 +161,16 @@ import time
 Выведи сообщение: "Ошибка ввода: введите два числа через пробел"
 ======================================
 """
-# firt_number = input("Введите первое число: ")
-# second_number = input("Введите второе число: ")
-#
-# try:
-#     result =float(firt_number) / float(second_number)
-#     print(result)
-# except ZeroDivisionError:
-#     print("На ноль делить нельзя!")
-# except ValueError:
-#     print("Ошибка ввода: введите два числа через пробел")
+firt_number = input("Введите первое число: ")
+second_number = input("Введите второе число: ")
+
+try:
+    result =float(firt_number) / float(second_number)
+    print(result)
+except ZeroDivisionError:
+    print("На ноль делить нельзя!")
+except ValueError:
+    print("Ошибка ввода: введите два числа через пробел")
 
 """ 
 ======================================
@@ -180,18 +180,18 @@ import time
 ======================================
 """
 
-# firt_number = input("Введите первое число: ")
-# second_number = input("Введите второе число: ")
-#
-# try:
-#     result =float(firt_number) / float(second_number)
-#     print(result)
-# except ZeroDivisionError:
-#     print("На ноль делить нельзя!")
-# except ValueError:
-#     print("Ошибка ввода: введите два числа через пробел")
-# except Exception:
-#     print("Произошла неизвестная ошибка")
+firt_number = input("Введите первое число: ")
+second_number = input("Введите второе число: ")
+
+try:
+    result =float(firt_number) / float(second_number)
+    print(result)
+except ZeroDivisionError:
+    print("На ноль делить нельзя!")
+except ValueError:
+    print("Ошибка ввода: введите два числа через пробел")
+except Exception:
+    print("Произошла неизвестная ошибка")
 
 """   
 ======================================
@@ -200,24 +200,24 @@ import time
 ======================================
 """
 
-# firt_number = input("Введите первое число: ")
-# second_number = input("Введите второе число: ")
-#
-# try:
-#     result =float(firt_number) / float(second_number)
-#     print(result)
-# except ZeroDivisionError:
-#     print("На ноль делить нельзя!")
-#     e = 'ZeroDivisionError'
-#     print(e)
-# except ValueError:
-#     e = 'ValueError'
-#     print(e)
-#     print("Ошибка ввода: введите два числа через пробел")
-# except Exception:
-#     e = 'Exception'
-#     print(e)
-#     print("Произошла неизвестная ошибка")
+firt_number = input("Введите первое число: ")
+second_number = input("Введите второе число: ")
+
+try:
+    result =float(firt_number) / float(second_number)
+    print(result)
+except ZeroDivisionError:
+    print("На ноль делить нельзя!")
+    e = 'ZeroDivisionError'
+    print(e)
+except ValueError:
+    e = 'ValueError'
+    print(e)
+    print("Ошибка ввода: введите два числа через пробел")
+except Exception:
+    e = 'Exception'
+    print(e)
+    print("Произошла неизвестная ошибка")
 
 """
 ======================================
@@ -258,26 +258,26 @@ except ValueError:
 ======================================
 """
 
-# firt_number = input("Введите первое число: ")
-# second_number = input("Введите второе число: ")
-#
-# try:
-#     result = float(firt_number) / float(second_number)
-#     print(result)
-# except ZeroDivisionError:
-#     print("На ноль делить нельзя!")
-#     e = 'ZeroDivisionError'
-#     print(e)
-# except ValueError:
-#     e = 'ValueError'
-#     print(e)
-#     print("Ошибка ввода: строку вводить нельзя")
-# except Exception:
-#     e = 'Exception'
-#     print(e)
-#     print("Произошла неизвестная ошибка")
-# else:
-#     print("Деление прошло успешно")
+firt_number = input("Введите первое число: ")
+second_number = input("Введите второе число: ")
+
+try:
+    result = float(firt_number) / float(second_number)
+    print(result)
+except ZeroDivisionError:
+    print("На ноль делить нельзя!")
+    e = 'ZeroDivisionError'
+    print(e)
+except ValueError:
+    e = 'ValueError'
+    print(e)
+    print("Ошибка ввода: строку вводить нельзя")
+except Exception:
+    e = 'Exception'
+    print(e)
+    print("Произошла неизвестная ошибка")
+else:
+    print("Деление прошло успешно")
 
 """
 ======================================
@@ -287,26 +287,26 @@ except ValueError:
 ======================================
 """
 
-# firt_number = input("Введите первое число: ")
-# second_number = input("Введите второе число: ")
-#
-# try:
-#     result = float(firt_number) / float(second_number)
-#     print(result)
-# except ZeroDivisionError:
-#     print("На ноль делить нельзя!")
-#     e = 'ZeroDivisionError'
-#     print(e)
-# except ValueError:
-#     e = 'ValueError'
-#     print(e)
-#     print("Ошибка ввода: строку вводить нельзя")
-# except Exception:
-#     e = 'Exception'
-#     print(e)
-#     print("Произошла неизвестная ошибка")
-# finally:
-#     print("Работа программы завершена")
+firt_number = input("Введите первое число: ")
+second_number = input("Введите второе число: ")
+
+try:
+    result = float(firt_number) / float(second_number)
+    print(result)
+except ZeroDivisionError:
+    print("На ноль делить нельзя!")
+    e = 'ZeroDivisionError'
+    print(e)
+except ValueError:
+    e = 'ValueError'
+    print(e)
+    print("Ошибка ввода: строку вводить нельзя")
+except Exception:
+    e = 'Exception'
+    print(e)
+    print("Произошла неизвестная ошибка")
+finally:
+    print("Работа программы завершена")
 
 """
 ======================================
@@ -315,19 +315,19 @@ except ValueError:
 Внутренний try/except ловит деление на ноль.
 ======================================
 """
-# first_number = input("Введите первое число: ")
-# second_number = input("Введите второе число: ")
-#
-# try:
-#     first_number = float(first_number)
-#     second_number = float(second_number)
-#     try:
-#         result = first_number / second_number
-#         print("Результат: ", result)
-#     except ZeroDivisionError:
-#          print("На ноль делить нельзя!")
-# except ValueError:
-#     print("Ошибка ввода, нужно вводить число!")
+first_number = input("Введите первое число: ")
+second_number = input("Введите второе число: ")
+
+try:
+    first_number = float(first_number)
+    second_number = float(second_number)
+    try:
+        result = first_number / second_number
+        print("Результат: ", result)
+    except ZeroDivisionError:
+         print("На ноль делить нельзя!")
+except ValueError:
+    print("Ошибка ввода, нужно вводить число!")
 
 """
 ======================================
@@ -335,15 +335,15 @@ except ValueError:
 с собственным try/except.
 Во внешнем коде обработай только ошибку ввода.
 """
-# try:
-#     x = float(input("Введите первое число: "))
-#     y = float(input("Введите второе число: "))
-#     def divide(x, y):
-#         try:
-#             result = x / y
-#             print("Результат: ", result)
-#         except ZeroDivisionError:
-#             print("На ноль делить нельзя!")
-#     divide(x, y)
-# except ValueError:
-#     print("Ошибка ввода, нужно вводить число!")
+try:
+    x = float(input("Введите первое число: "))
+    y = float(input("Введите второе число: "))
+    def divide(x, y):
+        try:
+            result = x / y
+            print("Результат: ", result)
+        except ZeroDivisionError:
+            print("На ноль делить нельзя!")
+    divide(x, y)
+except ValueError:
+    print("Ошибка ввода, нужно вводить число!")
